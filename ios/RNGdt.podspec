@@ -15,8 +15,8 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.dependency "React"
-  s.vendored_libraries = "GDT/libGDTMobSDK.a"
-  s.ios.frameworks = 'AdSupport','CoreLocation','QuarzCore','SystemConfiguration','CoreTelephony','Security','StoreKit'
-  s.ios.library = 'z'
-
+#   s.vendored_libraries = "GDT/libGDTMobSDK.a"
+#   s.ios.frameworks = 'AdSupport','CoreLocation','QuarzCore','SystemConfiguration','CoreTelephony','Security','StoreKit'
+#   s.ios.library = 'z'
+  s.dependency 'GDTMobSDK'
 end

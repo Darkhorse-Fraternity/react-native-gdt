@@ -31,6 +31,6 @@ repositories {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.facebook.react:react-native:+'
+    implementation (name:'GDTSDK.union.4.80.950', ext:'aar')
+    implementation 'com.facebook.react:react-native:+'
 }
