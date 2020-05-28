@@ -5,7 +5,7 @@
 package com.ineva.gdt;
 
 import android.graphics.Color;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.widget.FrameLayout;
 
 import com.facebook.react.bridge.Arguments;
@@ -20,6 +20,7 @@ import com.facebook.react.views.view.ReactViewGroup;
 import com.qq.e.ads.banner.ADSize;
 import com.qq.e.ads.banner.AbstractBannerADListener;
 import com.qq.e.ads.banner.BannerView;
+import com.qq.e.comm.util.AdError;
 
 import java.util.Map;
 
@@ -93,9 +94,9 @@ public class RNGDTBannerManager extends SimpleViewManager {
         banner.setADListener(new AbstractBannerADListener() {
 
             @Override
-            public void onNoAD(int arg0) {
+            public void onNoAD(AdError adError) {
                 WritableMap event = Arguments.createMap();
-                event.putString("error", "BannerNoAD，eCode=" + arg0);
+                event.putString("error", "BannerNoAD，eCode=" + adError.getErrorCode());
                 mEventEmitter.receiveEvent(view.getId(), Events.EVENT_FAILT_TO_RECEIVED.toString(), event);
             }
 
