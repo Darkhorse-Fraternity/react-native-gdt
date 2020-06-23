@@ -23,11 +23,11 @@
 //        self.nativeExpressAd.currentViewController = nil;
 //        [self.nativeExpressAd removeFromSuperview];
     }
-//    self.nativeExpressAd = [GDTNativeExpressAd]
+    self.nativeExpressAd = [[GDTNativeExpressAd alloc]initWithAppId:appInfo[@"appId"] placementId:appInfo[@"placementId"] adSize:self.bounds.size];
 //    self.nativeExpressAd = [[GDTNativeExpressAd alloc] initWithFrame:self.bounds
 //                                                       appkey:appInfo[@"appId"]
 //                                                  placementId:appInfo[@"placementId"]];
-//    self.nativeExpressAd.delegate = self;
+    self.nativeExpressAd.delegate = self;
 //    self.nativeExpressAd.currentViewController = [[[[UIApplication sharedApplication] delegate] window] rootViewController];
 //    [self addSubview:self.nativeExpressAd];
 ////    self.nativeExpressAd.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
