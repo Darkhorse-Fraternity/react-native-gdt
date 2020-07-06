@@ -100,17 +100,19 @@
       }
       CGFloat width = [UIScreen mainScreen].bounds.size.width - 16;
 //      self.backgroundColor = [UIColor grayColor];
-      self.iconImageView.frame = CGRectMake(8, 8, 40, 40);
+      self.iconImageView.frame = CGRectMake(18, 8, 40, 40);
     self.iconImageView.layer.cornerRadius = 20;
     self.iconImageView.layer.masksToBounds = YES;
       self.clickButton.frame = CGRectMake(width - 68, 8, 60, 44);
       self.titleLabel.frame = CGRectMake(66, 8+5, 250, 30);
     [self.titleLabel setFont:[UIFont systemFontOfSize:13]];
-      self.descLabel.frame = CGRectMake(8, 76, width, 30);
-        CGFloat imageLeft = 55;
-      CGFloat imageWidth = width - imageLeft - 70;
-
-    self.imageView.frame = CGRectMake(8+ imageLeft, 114, imageWidth ,  imageWidth   / imageRate );
+     
+    CGFloat imageLeft = 55;
+    CGFloat imageWidth = [UIScreen mainScreen].bounds.size.width * 0.6;
+    self.descLabel.frame = CGRectMake(8 +imageLeft, 56, width, 30);
+    self.descLabel.textColor = [UIColor colorWithRed:50.0f/255.0f green:50.0f/255.0f blue:50.0f/255.0f alpha:1.0f];
+    self.descLabel.font =[UIFont systemFontOfSize:15];
+    self.imageView.frame = CGRectMake(8+ imageLeft, 104, imageWidth ,  imageWidth   / imageRate );
       // mediaView logoView frame 更新在父view之后设置
     self.imageView.layer.cornerRadius = 10;
     self.imageView.layer.masksToBounds = YES;
