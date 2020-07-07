@@ -13,13 +13,16 @@ import java.util.List;
 public class RNGdtPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-      return Arrays.<NativeModule>asList();
+        List<NativeModule> modules = new ArrayList<>();
+        modules.add(new RNGDTNativeUnifiedADModule(reactContext));
+        return modules;
     }
 
     @Override
     public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
         List<ViewManager> managers = new ArrayList<>();
         managers.add(new RNGDTBannerManager());
+        managers.add(new RNGDTNativeUnifiedADViewManager());
         return managers;
     }
 }

@@ -109,7 +109,8 @@
      
     CGFloat imageLeft = 55;
     CGFloat imageWidth = [UIScreen mainScreen].bounds.size.width * 0.6;
-    self.descLabel.frame = CGRectMake(8 +imageLeft, 56, width, 30);
+    self.descLabel.frame = CGRectMake(8 +imageLeft, 56, width - imageLeft - 20, 30);
+    self.descLabel.numberOfLines = 1;
     self.descLabel.textColor = [UIColor colorWithRed:50.0f/255.0f green:50.0f/255.0f blue:50.0f/255.0f alpha:1.0f];
     self.descLabel.font =[UIFont systemFontOfSize:15];
     self.imageView.frame = CGRectMake(8+ imageLeft, 104, imageWidth ,  imageWidth   / imageRate );
