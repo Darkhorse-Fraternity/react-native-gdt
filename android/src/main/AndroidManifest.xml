@@ -30,14 +30,17 @@
     <!-- 请开发者注意字母的大小写，ADActivity，而不是AdActivity -->
     <activity
         android:name="com.qq.e.ads.ADActivity"
+        android:theme="@style/ADTheme"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize" />
     <activity
         android:name="com.qq.e.ads.PortraitADActivity"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+        android:theme="@style/ADTheme"
         android:screenOrientation="portrait" />
     <activity
         android:name="com.qq.e.ads.LandscapeADActivity"
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+        android:theme="@style/ADTheme"
         android:screenOrientation="landscape" />
     <provider
         android:name="androidx.core.content.FileProvide"
