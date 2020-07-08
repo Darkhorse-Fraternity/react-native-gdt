@@ -1,12 +1,19 @@
 package com.ineva.gdt;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Point;
 import android.net.Uri;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.facebook.common.executors.UiThreadImmediateExecutorService;
@@ -33,9 +40,12 @@ import com.qq.e.comm.constants.AdPatternType;
 import java.util.ArrayList;
 import java.util.List;
 
+import static androidx.core.view.ViewCompat.getDisplay;
+
 class RNGDTNativeUnifiedADViewManager extends SimpleViewManager {
     public static final String REACT_CLASS = "RNGDTNativeUnifiedADView";
     private NativeAdContainer mContainer;
+    private RelativeLayout mCustomContainer;
     private SimpleDraweeView mImagePoster;
     private SimpleDraweeView mImageLogo;
     private TextView mTitle;
@@ -54,6 +64,21 @@ class RNGDTNativeUnifiedADViewManager extends SimpleViewManager {
         View view = LayoutInflater.from(reactContext).inflate(R.layout.activity_native_unified_ad_simple, null);
 //        mContainer = view.findViewById(R.id.native_ad_container);
 //        return mContainer;
+        mContainer = view.findViewById(R.id.native_ad_container);
+        mImagePoster = view.findViewById(R.id.img_poster);
+        mImageLogo = view.findViewById(R.id.img_logo);
+        mCustomContainer = view.findViewById(R.id.custom_container);
+        int width = getScreenWidth(mReactContext);
+
+        ViewGroup.LayoutParams mImagePosterParams =  mImagePoster.getLayoutParams();
+        mImagePosterParams.height = (int) (width * 0.65 * 9 /16);
+        mImagePoster.setLayoutParams(mImagePosterParams);
+
+
+        ViewGroup.LayoutParams Params =  mCustomContainer.getLayoutParams();
+
+        Params.width = (int) (width * 0.65);
+        mCustomContainer.setLayoutParams(Params);
         return  view;
     }
 
@@ -64,9 +89,7 @@ class RNGDTNativeUnifiedADViewManager extends SimpleViewManager {
 
 //            ad.getIconUrl()
             int patternType = ad.getAdPatternType();
-            mContainer = view.findViewById(R.id.native_ad_container);
-            mImagePoster = view.findViewById(R.id.img_poster);
-            mImageLogo = view.findViewById(R.id.img_logo);
+
 //            mImageLogo.setBackgroundColor(Color.BLACK);
             Uri iconUri=Uri.parse(ad.getIconUrl());
             mImageLogo.setImageURI(iconUri);
@@ -108,42 +131,26 @@ class RNGDTNativeUnifiedADViewManager extends SimpleViewManager {
 //        view.setSource(sources);
     }
 
-    private void _getImage(Uri uri, ResizeOptions resizeOptions, final ImageCallback imageCallback) {
-        BaseBitmapDataSubscriber dataSubscriber = new BaseBitmapDataSubscriber() {
-            @Override
-            protected void onNewResultImpl(Bitmap bitmap) {
-                if (bitmap != null) {
-                    if (bitmap.getConfig() != null) {
-                        bitmap = bitmap.copy(bitmap.getConfig(), true);
-                        imageCallback.invoke(bitmap);
-                    } else {
-                        bitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
-                        imageCallback.invoke(bitmap);
-                    }
-                } else {
-                    imageCallback.invoke(null);
-                }
-            }
 
-            @Override
-            protected void onFailureImpl(DataSource<CloseableReference<CloseableImage>> dataSource) {
-                imageCallback.invoke(null);
-            }
-        };
 
-        ImageRequestBuilder builder = ImageRequestBuilder.newBuilderWithSource(uri);
-        if (resizeOptions != null) {
-            builder = builder.setResizeOptions(resizeOptions);
-        }
-        ImageRequest imageRequest = builder.build();
 
-        ImagePipeline imagePipeline = Fresco.getImagePipeline();
-        DataSource<CloseableReference<CloseableImage>> dataSource = imagePipeline.fetchDecodedImage(imageRequest, null);
-        dataSource.subscribe(dataSubscriber, UiThreadImmediateExecutorService.getInstance());
+//    private static Display getDisplay(Context context) {
+//        WindowManager wm;
+//        if (context instanceof Activity) {
+//            Activity activity = (Activity) context;
+//            wm = activity.getWindowManager();
+//        } else {
+//            wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+//        }
+//        if (wm != null) {
+//            return wm.getDefaultDisplay();
+//        }
+//        return null;
+//    }
+
+    private static int getScreenWidth(ThemedReactContext mReactContext) {
+        return mReactContext.getCurrentActivity().getResources().getSystem().getDisplayMetrics().widthPixels;
     }
 
-    private interface ImageCallback {
-        void invoke(@Nullable Bitmap bitmap);
-    }
 
 }

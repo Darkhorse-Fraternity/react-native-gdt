@@ -108,16 +108,16 @@
     [self.titleLabel setFont:[UIFont systemFontOfSize:13]];
      
     CGFloat imageLeft = 55;
-    CGFloat imageWidth = [UIScreen mainScreen].bounds.size.width * 0.6;
-    self.descLabel.frame = CGRectMake(8 +imageLeft, 56, width - imageLeft - 20, 30);
+    CGFloat imageWidth = [UIScreen mainScreen].bounds.size.width * 0.65;
+    self.descLabel.frame = CGRectMake(11 +imageLeft, 56, width - imageLeft - 20, 30);
     self.descLabel.numberOfLines = 1;
     self.descLabel.textColor = [UIColor colorWithRed:50.0f/255.0f green:50.0f/255.0f blue:50.0f/255.0f alpha:1.0f];
     self.descLabel.font =[UIFont systemFontOfSize:15];
-    self.imageView.frame = CGRectMake(8+ imageLeft, 104, imageWidth ,  imageWidth   / imageRate );
+    self.imageView.frame = CGRectMake(11 +imageLeft, 104, imageWidth ,  imageWidth   / imageRate );
       // mediaView logoView frame 更新在父view之后设置
     self.imageView.layer.cornerRadius = 10;
     self.imageView.layer.masksToBounds = YES;
-    self.mediaView.frame = CGRectMake(8 + imageLeft, 114, imageWidth, imageWidth / imageRate);
+    self.mediaView.frame = CGRectMake(11 + imageLeft, 114, imageWidth, imageWidth / imageRate);
       
     self.logoView.frame = CGRectMake(CGRectGetWidth(self.frame) - kGDTLogoImageViewDefaultWidth, CGRectGetHeight(self.frame) - kGDTLogoImageViewDefaultHeight, kGDTLogoImageViewDefaultWidth, kGDTLogoImageViewDefaultHeight);
     
@@ -140,7 +140,6 @@
 //          self.stopButton.frame = CGRectMake(260, 40, 40, 40);
 //          self.stopButton.hidden = NO;
 //      }
-    
 }
 
 #pragma mark - proerty getter
