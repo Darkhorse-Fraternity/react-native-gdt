@@ -1,46 +1,21 @@
 package com.ineva.gdt;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.Color;
-import android.graphics.Point;
 import android.net.Uri;
-import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.facebook.common.executors.UiThreadImmediateExecutorService;
-import com.facebook.common.references.CloseableReference;
-import com.facebook.datasource.DataSource;
-import com.facebook.drawee.backends.pipeline.Fresco;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.facebook.drawee.view.SimpleDraweeView;
-import com.facebook.imagepipeline.common.ResizeOptions;
-import com.facebook.imagepipeline.core.ImagePipeline;
-import com.facebook.imagepipeline.datasource.BaseBitmapDataSubscriber;
-import com.facebook.imagepipeline.image.CloseableImage;
-import com.facebook.imagepipeline.request.ImageRequest;
-import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.facebook.react.uimanager.SimpleViewManager;
 import com.facebook.react.uimanager.ThemedReactContext;
 import com.facebook.react.uimanager.annotations.ReactProp;
 import com.qq.e.ads.nativ.NativeUnifiedADData;
 import com.qq.e.ads.nativ.widget.NativeAdContainer;
 import com.qq.e.comm.constants.AdPatternType;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import static androidx.core.view.ViewCompat.getDisplay;
 
 class RNGDTNativeUnifiedADViewManager extends SimpleViewManager {
     public static final String REACT_CLASS = "RNGDTNativeUnifiedADView";
@@ -50,7 +25,8 @@ class RNGDTNativeUnifiedADViewManager extends SimpleViewManager {
     private SimpleDraweeView mImageLogo;
     private TextView mTitle;
     private TextView mDesc;
-    private  ThemedReactContext mReactContext;
+    private ThemedReactContext mReactContext;
+
     @NonNull
     @Override
     public String getName() {
@@ -62,46 +38,43 @@ class RNGDTNativeUnifiedADViewManager extends SimpleViewManager {
     protected View createViewInstance(@NonNull ThemedReactContext reactContext) {
         mReactContext = reactContext;
         View view = LayoutInflater.from(reactContext).inflate(R.layout.activity_native_unified_ad_simple, null);
-//        mContainer = view.findViewById(R.id.native_ad_container);
-//        return mContainer;
+        // mContainer = view.findViewById(R.id.native_ad_container);
+        // return mContainer;
         mContainer = view.findViewById(R.id.native_ad_container);
         mImagePoster = view.findViewById(R.id.img_poster);
         mImageLogo = view.findViewById(R.id.img_logo);
         mCustomContainer = view.findViewById(R.id.custom_container);
         int width = getScreenWidth(mReactContext);
 
-        ViewGroup.LayoutParams mImagePosterParams =  mImagePoster.getLayoutParams();
-        mImagePosterParams.height = (int) (width * 0.65 * 9 /16);
+        ViewGroup.LayoutParams mImagePosterParams = mImagePoster.getLayoutParams();
+        mImagePosterParams.height = (int) (width * 0.65 * 9 / 16);
         mImagePoster.setLayoutParams(mImagePosterParams);
 
-
-        ViewGroup.LayoutParams Params =  mCustomContainer.getLayoutParams();
+        ViewGroup.LayoutParams Params = mCustomContainer.getLayoutParams();
 
         Params.width = (int) (width * 0.65);
         mCustomContainer.setLayoutParams(Params);
-        return  view;
+        return view;
     }
 
     @ReactProp(name = "index")
-    public void setIndex(View view,  int index) {
-        if(RNGDTNativeUnifiedADData.getInstance().list.size() >0){
+    public void setIndex(View view, int index) {
+        if (RNGDTNativeUnifiedADData.getInstance().list.size() > 0) {
             NativeUnifiedADData ad = RNGDTNativeUnifiedADData.getInstance().list.get(index);
 
-//            ad.getIconUrl()
+            // ad.getIconUrl()
             int patternType = ad.getAdPatternType();
 
-//            mImageLogo.setBackgroundColor(Color.BLACK);
-            Uri iconUri=Uri.parse(ad.getIconUrl());
+            // mImageLogo.setBackgroundColor(Color.BLACK);
+            Uri iconUri = Uri.parse(ad.getIconUrl());
             mImageLogo.setImageURI(iconUri);
-            String imageUriString =  ad.getImgUrl();
-            if(patternType == AdPatternType.NATIVE_3IMAGE){
+            String imageUriString = ad.getImgUrl();
+            if (patternType == AdPatternType.NATIVE_3IMAGE) {
                 imageUriString = ad.getImgList().get(0);
             }
 
             Uri imageUri = Uri.parse(imageUriString);
             mImagePoster.setImageURI(imageUri);
-
-
 
             mTitle = view.findViewById(R.id.text_title);
             mDesc = view.findViewById(R.id.text_desc);
@@ -113,44 +86,39 @@ class RNGDTNativeUnifiedADViewManager extends SimpleViewManager {
             clickableViews.add(mTitle);
             clickableViews.add(mDesc);
             ad.bindAdToView(mReactContext, mContainer, null, clickableViews);
-//            this._getImage(iconUri, null, new ImageCallback() {
-//                @Override
-//                public void invoke(@Nullable Bitmap bitmap) {
-//                    mImageLogo.setImageBitmap(bitmap);
-//                }
-//            });
-//            this._getImage(imageUri, null, new ImageCallback() {
-//                @Override
-//                public void invoke(@Nullable Bitmap bitmap) {
-//                    mImagePoster.setImageBitmap(bitmap);
-//                }
-//            });
+            // this._getImage(iconUri, null, new ImageCallback() {
+            // @Override
+            // public void invoke(@Nullable Bitmap bitmap) {
+            // mImageLogo.setImageBitmap(bitmap);
+            // }
+            // });
+            // this._getImage(imageUri, null, new ImageCallback() {
+            // @Override
+            // public void invoke(@Nullable Bitmap bitmap) {
+            // mImagePoster.setImageBitmap(bitmap);
+            // }
+            // });
         }
 
-
-//        view.setSource(sources);
+        // view.setSource(sources);
     }
 
-
-
-
-//    private static Display getDisplay(Context context) {
-//        WindowManager wm;
-//        if (context instanceof Activity) {
-//            Activity activity = (Activity) context;
-//            wm = activity.getWindowManager();
-//        } else {
-//            wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-//        }
-//        if (wm != null) {
-//            return wm.getDefaultDisplay();
-//        }
-//        return null;
-//    }
+    // private static Display getDisplay(Context context) {
+    // WindowManager wm;
+    // if (context instanceof Activity) {
+    // Activity activity = (Activity) context;
+    // wm = activity.getWindowManager();
+    // } else {
+    // wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+    // }
+    // if (wm != null) {
+    // return wm.getDefaultDisplay();
+    // }
+    // return null;
+    // }
 
     private static int getScreenWidth(ThemedReactContext mReactContext) {
         return mReactContext.getCurrentActivity().getResources().getSystem().getDisplayMetrics().widthPixels;
     }
-
 
 }
