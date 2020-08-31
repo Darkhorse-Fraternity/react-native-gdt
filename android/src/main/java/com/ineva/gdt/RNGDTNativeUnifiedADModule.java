@@ -35,6 +35,8 @@ class RNGDTNativeUnifiedADModule extends ReactContextBaseJavaModule implements N
         }else {
           if(RNGDTNativeUnifiedADData.getInstance().list != null) {
             promise.resolve(RNGDTNativeUnifiedADData.getInstance().list.size());
+          }else {
+            promise.resolve(0);
           }
         }
     }
