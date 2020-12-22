@@ -1,9 +1,11 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="ADTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="ADTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <!--设置透明背景-->
+<!--        <attr name="gdt_splash_logo" format="reference"/>-->
+
     </style>
 
 </resources>

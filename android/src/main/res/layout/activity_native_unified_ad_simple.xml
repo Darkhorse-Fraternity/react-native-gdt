@@ -9,6 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
+        android:theme="@style/Theme.AppCompat.DayNight"
         tools:context="com.qq.e.union.demo.NativeVideoDemoActivity">
 
         <com.qq.e.ads.nativ.widget.NativeAdContainer
@@ -79,7 +80,7 @@
                         android:layout_toRightOf="@id/img_logo"
                         android:ellipsize="end"
                         android:singleLine="true"
-                        android:textColor="#8A000000" />
+                        android:textColor="?android:attr/textColorPrimary" />
 
 
                 </RelativeLayout>
@@ -149,12 +150,9 @@
                         android:id="@+id/text_desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-
-
-
                         android:ellipsize="end"
                         android:maxLines="2"
-                        android:textColor="#e0000000" />
+                        android:textColor="?android:attr/textColorPrimary" />
                     <!-- 原生广告的大图 -->
                     <com.facebook.drawee.view.SimpleDraweeView
                         android:layout_below="@id/text_desc"
