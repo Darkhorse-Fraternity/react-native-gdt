@@ -5,6 +5,8 @@ import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -53,6 +55,7 @@ public class SplashActivity extends Activity implements SplashADListener,View.On
   private Button loadAdOnlyDisplayButton;
   private Button loadAdOnlyRefreshButton;
   private TextView loadAdOnlyStatusTextView;
+  private ImageView logoView ;
 
   /**
    * 为防止无广告时造成视觉上类似于"闪退"的情况，设定无广告时页面跳转根据需要延迟一定时间，demo
@@ -98,6 +101,14 @@ public class SplashActivity extends Activity implements SplashADListener,View.On
 //    if (!needLogo) {
 //      findViewById(R.id.app_logo).setVisibility(View.GONE);
 //    }
+
+    logoView =  findViewById(R.id.app_logo);
+    int currentNightMode = getResources().getConfiguration().uiMode
+            & Configuration.UI_MODE_NIGHT_MASK;
+    if(currentNightMode == Configuration.UI_MODE_NIGHT_YES){
+      logoView.setImageResource(R.drawable.gdt_splash_logo_dark);
+    }
+
     if (Build.VERSION.SDK_INT >= 23) {
       checkAndRequestPermission();
     } else {
