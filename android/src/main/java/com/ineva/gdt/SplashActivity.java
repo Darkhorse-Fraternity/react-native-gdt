@@ -102,15 +102,12 @@ public class SplashActivity extends Activity implements SplashADListener,View.On
 //      findViewById(R.id.app_logo).setVisibility(View.GONE);
 //    }
 
-//    logoView =  findViewById(R.id.app_logo);
-//    int currentNightMode = getResources().getConfiguration().uiMode
-//            & Configuration.UI_MODE_NIGHT_MASK;
-//    if(currentNightMode == Configuration.UI_MODE_NIGHT_YES){
-//      logoView.setImageResource(R.drawable.gdt_splash_logo_dark);
-//    }else {
-//      // 设置字体颜色黑色
-//      getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
-//    }
+   logoView =  findViewById(R.id.app_logo);
+   int currentNightMode = getResources().getConfiguration().uiMode
+           & Configuration.UI_MODE_NIGHT_MASK;
+   if(currentNightMode == Configuration.UI_MODE_NIGHT_YES){
+     logoView.setImageResource(R.drawable.gdt_splash_logo_dark);
+   }
 
     if (Build.VERSION.SDK_INT >= 23) {
       checkAndRequestPermission();
