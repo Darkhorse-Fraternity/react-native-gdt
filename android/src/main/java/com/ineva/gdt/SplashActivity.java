@@ -107,6 +107,9 @@ public class SplashActivity extends Activity implements SplashADListener,View.On
             & Configuration.UI_MODE_NIGHT_MASK;
     if(currentNightMode == Configuration.UI_MODE_NIGHT_YES){
       logoView.setImageResource(R.drawable.gdt_splash_logo_dark);
+    }else {
+      // 设置字体颜色黑色
+      getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
     }
 
     if (Build.VERSION.SDK_INT >= 23) {
