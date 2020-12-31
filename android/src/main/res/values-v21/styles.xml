@@ -5,5 +5,7 @@
         <!-- Customize your theme here. -->
         <!--设置透明背景-->
 <!--        <item name="android:navigationBarColor">#FFFFFF</item>&ndash;&gt;-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 </resources>

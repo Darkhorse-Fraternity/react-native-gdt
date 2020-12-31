@@ -4,8 +4,10 @@
     <style name="ADTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <!--设置透明背景-->
-        <item name="android:statusBarColor">?android:colorBackground</item>
-        <item name="android:colorPrimaryDark">@color/adColorPrimary</item>
+<!--        <item name="android:statusBarColor">?android:colorBackground</item>-->
+<!--        <item name="android:colorPrimaryDark">@color/adColorPrimary</item>-->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
 
 
